@@ -1,0 +1,42 @@
+# Ignore build output
+bin/
+obj/
+
+# Ignore NuGet packages
+*.nupkg
+*.snupkg
+packages/
+
+# Ignore user-specific files
+*.suo
+*.user
+*.userprefs
+*.vscode
+
+# Ignore build artifacts
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+*.bak
+
+# Ignore Visual Studio files
+.vs/
+*.sln
+*.suo
+*.csproj
+*.csproj.user
+*.sln.DotSettings.user
+
+# Ignore ReSharper files
+_ReSharper*/
+*.resharper
+*.resharper.user
+
+# Ignore test results
+TestResults/
+
+# Ignore publish profiles
+*.pubxml
+*.pubxml.user
