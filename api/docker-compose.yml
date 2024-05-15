@@ -1,8 +1,0 @@
-services:
-  webapi:
-    build:
-      context: .
-      dockerfile: ./dockerfile
-    ports:
-      - "80:80"
-    container_name: WebApi
