@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backendAPI.Models;
+using WaferLibrary;
+
 
 namespace backendAPI.Controllers
 {
@@ -24,6 +26,9 @@ namespace backendAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Wafer>>> GetWafers()
         {
+            // print out the wafers in JSON format
+
+
             return await _context.Wafers.ToListAsync();
         }
 

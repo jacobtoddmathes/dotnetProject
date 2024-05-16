@@ -1,6 +1,6 @@
-namespace backendAPI.Models
-{
-    public class Wafer
+﻿namespace WaferLibrary;
+
+ public class Wafer
     {
         public int Id { get; set; }
         public string WaferId { get; set; }
@@ -12,4 +12,3 @@ namespace backendAPI.Models
         public string WaferComment { get; set; }
         public string WaferImage { get; set; }
     }
-}

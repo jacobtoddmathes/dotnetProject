@@ -1,0 +1,25 @@
+﻿@page "/wafer"
+@inject HttpClient http
+@using WaferLibrary
+@rendermode InteractiveServer
+
+<h3>Wafer</h3>
+
+
+
+@code {
+    private WaferLibrary.Wafer[] wafers;
+    private bool isLoading = true;
+
+    @* protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            wafers = await http.GetFromJsonAsync<WaferLibrary.Wafer[]>("api/Wafer");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    } *@
+}
