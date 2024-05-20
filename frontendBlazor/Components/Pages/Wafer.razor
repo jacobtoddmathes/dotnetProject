@@ -5,21 +5,70 @@
 
 <h3>Wafer</h3>
 
+<EditForm Model="newWafer" OnValidSubmit="HandleValidSubmit">
+    <div class="form-group">
+        <label for="waferId">Wafer ID:</label>
+        <InputNumber id="waferId" @bind-Value="newWafer.Id" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create Wafer</button>
+</EditForm>
 
+@if (isLoading)
+{
+    <p>Loading...</p>
+}
+else
+{
+    @foreach (var wafer in wafers)
+    {
+        <p>@wafer.Id</p>
+        <div class="wafer-details">
+            <p>Wafer ID: @wafer.Id</p>
+            <p>Wafer Name: @wafer.WaferId</p>
+            <p>Wafer Type: @wafer.WaferType</p>
+            <p>Wafer Status: @wafer.WaferSize</p>
+
+        </div>
+
+
+    }
+}
 
 @code {
-    private WaferLibrary.Wafer[] wafers;
+    private WaferLibrary.Wafer[] wafers = Array.Empty<WaferLibrary.Wafer>();
+    private WaferLibrary.Wafer newWafer = new WaferLibrary.Wafer();
     private bool isLoading = true;
 
-    @* protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        try
+        if (firstRender)
         {
-            wafers = await http.GetFromJsonAsync<WaferLibrary.Wafer[]>("api/Wafer");
+            try
+            {
+                var response = await http.GetFromJsonAsync<WaferLibrary.Wafer[]>("http://localhost:5065/api/Wafer");
+                wafers = response ?? Array.Empty<WaferLibrary.Wafer>();
+            }
+            finally
+            {
+                isLoading = false;
+                StateHasChanged(); // Notify Blazor that the state has changed and a re-render is required
+            }
         }
-        finally
-        {
-            isLoading = false;
-        }
-    } *@
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        await http.PostAsJsonAsync("http://localhost:5065/api/Wafer", new {
+    id= newWafer.Id,
+  waferId= "string",
+  waferType= "string",
+  waferSize= "string",
+  waferStatus= "string",
+  waferLocation= "string",
+  waferOwner= "string",
+  waferComment= "string",
+  waferImage= "string"
+} );
+        newWafer = new WaferLibrary.Wafer(); // Reset the form
+    }
 }
